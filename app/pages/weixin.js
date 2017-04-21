@@ -20,7 +20,7 @@ var swipoutBtns = [
         }
     }
 ]
-export default class weixin extends React.Component{
+export default class WeiXin extends React.Component{
     constructor(props){
         super(props)
         //要绑定其上下文否则点击事件无效
@@ -51,7 +51,7 @@ export default class weixin extends React.Component{
                                 {rowData.year}
                             </Text>
                             <Image
-                                source={{uri: rowData.posters.thumbnail}}
+                                source={require('../img/bell.png')}
                                 style={styles.bell}
                             />
                         </View>
@@ -78,7 +78,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection:'row',
         alignItems:'center',
-        padding:8
+        padding:8,
+        borderBottomWidth: 0.25,
+        borderBottomColor:'grey'
     },
     thumbnail: {
         width: 45,
@@ -97,8 +99,8 @@ const styles = StyleSheet.create({
         fontSize:20,
     },
     bell:{
-        width:10,
-        height:10,
+        width:20,
+        height:20,
         marginTop:10,
     }
 })
