@@ -33,15 +33,27 @@ export default class weixin extends React.Component{
         return (
             <Swipeout right={swipoutBtns} backgroundColor="#ffffff">
                 <TouchableHighlight onPress={()=>{this.pressItem(rowData,rowID)}} underlayColor = "#C0C0C0">
-                    <View style={styles.container}>
+                    <View style={styles.row}>
                         <Image
                             source={{uri: rowData.posters.thumbnail}}
                             style={styles.thumbnail}
                         />
-                        <View style={styles.rightContainer}>
-                            <Text style = {styles.rightContainer}>
-                                Swipe me left
+                        <View style={styles.centerContainer}>
+                            <Text style = {styles.name}>
+                                {rowData.mpaa_rating}
                             </Text>
+                            <Text style = {styles.content}>
+                                {rowData.id}
+                            </Text>
+                        </View>
+                        <View style={styles.rightContainer}>
+                            <Text style = {styles.time}>
+                                {rowData.year}
+                            </Text>
+                            <Image
+                                source={{uri: rowData.posters.thumbnail}}
+                                style={styles.bell}
+                            />
                         </View>
                     </View>
                 </TouchableHighlight>
@@ -58,35 +70,35 @@ export default class weixin extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection:'row',
-    },
-    thumbnail:{
-        width: 53,
-        height: 81,
-    },
-    listView:{
-        backgroundColor: '#F5FCFF',
-    },
-    rightContainer:{
-        flex:1,
-        // backgroundColor:'#ff0000'
-    },
-    title:{
-        fontSize:20,
-        marginBottom:8,
-        textAlign:'center'
-    },
-    year:{
-        textAlign:'center'
-    },
-    thumbnail: {
-        width: 53,
-        height: 53,
-    },
     listView: {
         paddingTop: 30,
         backgroundColor: '#efeff4',
     },
+    row: {
+        flex: 1,
+        flexDirection:'row',
+        alignItems:'center',
+        padding:8
+    },
+    thumbnail: {
+        width: 45,
+        height: 45,
+    },
+    centerContainer:{
+        flex:1,
+        marginLeft:5
+    },
+    rightContainer:{
+        flex:1,
+        alignItems:'flex-end',
+        marginRight:5
+    },
+    name:{
+        fontSize:20,
+    },
+    bell:{
+        width:10,
+        height:10,
+        marginTop:10,
+    }
 })
