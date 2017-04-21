@@ -119,13 +119,14 @@ const styles = StyleSheet.create({
     top:{
         backgroundColor:"#373337",
         width:SW,
-        height:50
+        height:50,
+        // alignItems:'center',
+        justifyContent:'center',
     },
     topText:{
         color:"#ffffff",
         textAlign:'center',
-        alignItems:'center',
-        justifyContent:'center',
+
         fontSize:18,
     },
     tabText: {

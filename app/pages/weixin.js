@@ -1,44 +1,57 @@
 import React from 'react'
-import {ListView,StyleSheet,Image,View,Text} from 'react-native'
+import {ListView,StyleSheet,Image,View,Text,TouchableHighlight} from 'react-native'
 import Swipeout from 'react-native-swipeout'
 
 var swipoutBtns = [
     {
         text:'标为未读',
         backgroundColor:"#c7c7cc",
-        color:"#ffffff"
+        color:"#ffffff",
+        onPress:function () {
+            alert('flag')
+        }
     },
     {
         text:'删除',
         backgroundColor:"#ff3a30",
-        color:"#ffffff"
+        color:"#ffffff",
+        onPress:function () {
+            alert('delete');
+        }
     }
 ]
 export default class weixin extends React.Component{
     constructor(props){
         super(props)
+        //要绑定其上下文否则点击事件无效
+        // this.renderItem = this.renderItem.bind(this);
     }
-    renderItem(movie){
+    pressItem(rowData, row,IDsectionID ){
+        alert(rowData.title);
+    }
+    renderItem(rowData,sectionID, rowID){
         return (
-            <Swipeout right={swipoutBtns}>
-                <View style={styles.container}>
-                    <Image
-                        source={{uri: movie.posters.thumbnail}}
-                        style={styles.thumbnail}
-                    />
-                    <View style={styles.rightContainer}>
-                        <Text style = {styles.rightContainer}>
-                            Swipe me left
-                        </Text>
+            <Swipeout right={swipoutBtns} backgroundColor="#ffffff">
+                <TouchableHighlight onPress={()=>{this.pressItem(rowData,rowID)}} underlayColor = "#C0C0C0">
+                    <View style={styles.container}>
+                        <Image
+                            source={{uri: rowData.posters.thumbnail}}
+                            style={styles.thumbnail}
+                        />
+                        <View style={styles.rightContainer}>
+                            <Text style = {styles.rightContainer}>
+                                Swipe me left
+                            </Text>
+                        </View>
                     </View>
-                </View>
+                </TouchableHighlight>
             </Swipeout>
-
         );
     }
     render(){
         return (
-            <ListView dataSource = {this.props.dataSource} renderRow = {this.renderItem} style={styles.listView}>
+            // renderRow={this.renderRow.bind(this)也可以此种方法来绑定
+            <ListView dataSource = {this.props.dataSource} renderRow = {this.renderItem.bind(this)} style={styles.listView}>
             </ListView>
         )
     }
