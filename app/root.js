@@ -3,7 +3,8 @@ import {StyleSheet,ListView,View,Text,Image,Dimensions} from 'react-native'
 import TabNavigator from 'react-native-tab-navigator'
 import WeiXin from './pages/weixin'
 import Contacts from './pages/contacts'
-
+import Found from './pages/found'
+import Me from './pages/me'
 /**
  * 为了避免骚扰，我们用了一个样例数据来替代Rotten Tomatoes的API
  * 请求，这个样例数据放在React Native的Github库中。
@@ -90,7 +91,7 @@ export default class Root extends React.Component {
                         renderIcon={() => <Image style={styles.icon} source={require("./img/found.png")} />}
                         renderSelectedIcon={() => <Image style={styles.icon} source={require("./img/foundSel.png")} />}
                         onPress={() => this.setState({ selectedTab: '发现' })}>
-                        <Image source={require("./img/found.png")}></Image>
+                        <Found/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === '我'}
@@ -100,7 +101,7 @@ export default class Root extends React.Component {
                         renderIcon={() => <Image style={styles.icon} source={require("./img/me.png")} />}
                         renderSelectedIcon={() => <Image style={styles.icon} source={require("./img/meSel.png")} />}
                         onPress={() => this.setState({ selectedTab: '我' })}>
-                        <Image source={require("./img/me.png")}></Image>
+                        <Me/>
                     </TabNavigator.Item>
                 </TabNavigator>
             </View>

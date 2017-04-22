@@ -7,6 +7,7 @@ var swipoutBtns = [
         text:'标为未读',
         backgroundColor:"#c7c7cc",
         color:"#ffffff",
+        width:150,
         onPress:function () {
             alert('flag')
         }
@@ -15,6 +16,7 @@ var swipoutBtns = [
         text:'删除',
         backgroundColor:"#ff3a30",
         color:"#ffffff",
+        width:80,
         onPress:function () {
             alert('delete');
         }
@@ -85,7 +87,8 @@ const styles = StyleSheet.create({
     thumbnail: {
         width: 45,
         height: 45,
-        borderRadius:5
+        borderRadius:5,
+        borderWidth:0.25
     },
     centerContainer:{
         flex:1,

@@ -1,0 +1,33 @@
+{
+  "data":[
+    {
+      "title":"",
+      "mys":[
+        {"name":"隔壁老王","icon":"icon_watch"},
+        {"name":"watch微信","icon":"icon_watch"}
+      ]
+    },
+    {
+      "title":"",
+      "mys":[
+        {"name":"相册","icon":"icon_gallery"},
+        {"name":"收藏","icon":"icon_collecting"},
+        {"name":"钱包","icon":"icon_wallet"},
+        {"name":"卡包","icon":"icon_card_bag"}
+      ]
+    },
+    {
+      "title":"",
+      "mys":[
+        {"name":"表情","icon":"icon_expressions"}
+      ]
+    },
+    {
+      "title":"",
+      "mys":[
+        {"name":"设置","icon":"icon_settings"}
+
+      ]
+    }
+  ]
+}

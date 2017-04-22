@@ -1,0 +1,30 @@
+{
+  "data":[
+    {
+      "title":"",
+      "founds":[
+        {"name":"朋友圈","icon":"icon_Friendster"}
+      ]
+    },
+    {
+      "title":"",
+      "founds":[
+        {"name":"扫一扫","icon":"icon_scan"},
+        {"name":"摇一摇","icon":"icon_shake"}
+      ]
+    },
+    {
+      "title":"",
+      "founds":[
+        {"name":"附近的人","icon":"icon_near_people"}
+      ]
+    },
+    {
+      "title":"",
+      "founds":[
+        {"name":"购物","icon":"icon_shopping"},
+        {"name":"游戏","icon":"icon_game"}
+      ]
+    }
+  ]
+}
