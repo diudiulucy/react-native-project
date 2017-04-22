@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     thumbnail: {
         width: 45,
         height: 45,
+        borderRadius:5
     },
     centerContainer:{
         flex:1,
