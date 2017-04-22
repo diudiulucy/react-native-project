@@ -2,7 +2,7 @@ import React from 'react'
 import {StyleSheet,ListView,View,Text,Image,Dimensions} from 'react-native'
 import TabNavigator from 'react-native-tab-navigator'
 import WeiXin from './pages/weixin'
-
+import Contacts from './pages/contacts'
 
 /**
  * 为了避免骚扰，我们用了一个样例数据来替代Rotten Tomatoes的API
@@ -80,7 +80,7 @@ export default class Root extends React.Component {
                         renderIcon={() => <Image style={styles.icon} source={require("./img/contacts.png")} />}
                         renderSelectedIcon={() => <Image style={styles.icon} source={require("./img/contactsSel.png")} />}
                         onPress={() => this.setState({ selectedTab: '通讯录' })}>
-                        <Image source={require("./img/contacts.png")}></Image>
+                        <Contacts />
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === '发现'}
