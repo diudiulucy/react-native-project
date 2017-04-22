@@ -3,8 +3,8 @@
  */
 import React from 'react'
 import {ListView,StyleSheet,Image,View,Text,TouchableHighlight} from 'react-native'
-
-var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json'
+// import Contacts from '../doc/contacts.json'
+var ContactsData = require("../doc/contacts.json")
 
 export default class Contacts extends React.Component{
     constructor(props){
@@ -19,62 +19,35 @@ export default class Contacts extends React.Component{
                 sectionHeaderHasChanged:(r1,r2)=>r1 !== r2
             })
         }
-        this.fetchData = this.fetchData.bind(this);
+        this.loadListViewDataFormJson = this.loadListViewDataFormJson.bind(this);
 
     }
     componentDidMount() {
-        this.fetchData();
+        this.loadListViewDataFormJson();
     }
-    fetchData(){
-        fetch(REQUEST_URL)
-            .then((response) => response.json())
-            .then((responseData) => {
-                var dataBlob = {
-                    'sectionIDC':{title:''},
-                    'sectionIDC:rowID1':{name:'老马'},
-                    'sectionIDC:rowID2':{name:'老王'},
-                    'sectionIDC:rowID3':{name:'老马'},
-                    'sectionIDC:rowID4':{name:'老王'},
+    loadListViewDataFormJson(){
+        //获取数据
+        var jsonData = ContactsData.data;
 
-                    'sectionID1':{title:'A'},
-                    'sectionID1:rowID1':{name:'老马'},
-                    'sectionID1:rowID2':{name:'老王'},
+        var dataBlob = {};
+        var sectionIDs = [];
+        var rowIDs = [];
 
-                    'sectionID2':{title:'B'},
-                    'sectionID2:rowID1':{name:'老张'},
-                    'sectionID2:rowID2':{name:'老胡'},
+        for(let i = 0;i < jsonData.length; i++){
+            sectionIDs.push(i);
+            dataBlob[i] = jsonData[i].title;
 
-                    'sectionID3':{title:'C'},
-                    'sectionID3:rowID1':{name:'老张'},
-                    'sectionID3:rowID2':{name:'老胡'},
+            rowIDs[i] = [];
+            var contacts=jsonData[i].contacts;
+            for(let j = 0;j<contacts.length;j++){
+                rowIDs[i].push(j);
+                dataBlob[i+':'+j] = contacts[j];
+            }
+        }
+        this.setState({
+            dataSource:this.state.dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs)
+        })
 
-                    'sectionID4':{title:'D'},
-                    'sectionID4:rowID1':{name:'老张'},
-                    'sectionID4:rowID2':{name:'老胡'},
-
-                    'sectionID5':{title:'E'},
-                    'sectionID5:rowID1':{name:'老张'},
-                    'sectionID5:rowID2':{name:'老胡'},
-
-                    'sectionID6':{title:'F'},
-                    'sectionID6:rowID1':{name:'老张'},
-                    'sectionID6:rowID2':{name:'老胡'},
-
-                    'sectionID7':{title:'G'},
-                    'sectionID7:rowID1':{name:'老张'},
-                    'sectionID7:rowID2':{name:'老胡'},
-
-                    'sectionID8':{title:'H'},
-                    'sectionID8:rowID1':{name:'老张'},
-                    'sectionID8:rowID2':{name:'老胡'},
-                }
-                var sectionIDs = ['sectionIDC','sectionID1','sectionID2','sectionID3','sectionID4','sectionID5','sectionID6','sectionID7','sectionID8'];
-                var rowIDs = [['rowID1','rowID2','rowID3','rowID4'],['rowID1','rowID2'],['rowID1','rowID2'],['rowID1','rowID2'],['rowID1','rowID2'],['rowID1','rowID2'],['rowID1','rowID2'],['rowID1','rowID2'],['rowID1','rowID2']];
-                this.setState({
-                    dataSource:this.state.dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs)
-                })
-            })
-            .done();
     }
     pressItem(rowData ){
         alert(rowData.name);
@@ -83,10 +56,10 @@ export default class Contacts extends React.Component{
         return (
                 <TouchableHighlight onPress={()=>{this.pressItem(rowData)}} underlayColor = "#C0C0C0">
                     <View style={styles.row}>
-                        {/*<Image*/}
-                            {/*source={{uri: rowData.posters.thumbnail}}*/}
-                            {/*style={styles.thumbnail}*/}
-                        {/*/>*/}
+                        <Image
+                           source={{uri:rowData.icon}}
+                            style={styles.icon}
+                        />
                         <Text style = {styles.name}>
                             {rowData.name}
                         </Text>
@@ -98,7 +71,7 @@ export default class Contacts extends React.Component{
         return (
             <View style = {styles.sectionHead}>
                 <Text style={{marginLeft:10,color:'#A3A3A8'}}>
-                    {sectionData.title}
+                    {sectionData}
                 </Text>
             </View>
         )
@@ -136,12 +109,13 @@ const styles = StyleSheet.create({
         borderBottomColor:'grey',
         backgroundColor:"#ffffff"
     },
-    thumbnail: {
+    icon: {
         width: 30,
         height: 30,
     },
     name:{
-        fontSize:20,
+        fontSize:15,
+        color:"#000000",
         marginLeft:10
     },
 })
